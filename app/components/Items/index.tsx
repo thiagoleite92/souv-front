@@ -22,7 +22,7 @@ export function Items({ items }: ItemsProps) {
     <ul className="w-full justify-between items-center space-y-2">
       {items.map((item) => (
         <li
-          className="bg-gray400 w-full rounded-md flex justify-between items-center p-4"
+          className="bg-gray-400 w-full rounded-md flex justify-between items-center p-4"
           key={item.id}
         >
           <div className="flex flex-col heading2 space-y-1">

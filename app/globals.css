@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0c0c0d;
     --foreground: #ededed;
   }
 }
@@ -29,10 +29,10 @@ body {
   }
 
   .heading1 {
-    @apply text-[24px] leading-[100%] font-bold text-gray100 font-sans;
+    @apply text-[24px] leading-[100%] font-bold text-gray-100 font-sans;
   }
   font-sans .heading2 {
-    @apply text-[14px] leading-[100%] font-bold text-gray100 font-sans;
+    @apply text-[14px] leading-[100%] font-bold text-gray-100 font-sans;
   }
 
   .tag {

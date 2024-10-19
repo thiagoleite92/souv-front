@@ -4,6 +4,7 @@ import {
   Carrot,
   EllipsisVertical,
   Milk,
+  PlusIcon,
   Sandwich,
 } from 'lucide-react';
 
@@ -20,6 +21,9 @@ export function RenderIcons({ icon, size }: RenderIconsProps) {
     vegetable: <Carrot size={size} />,
     meat: <Beef size={size} />,
     ellipsisVertical: <EllipsisVertical size={size} />,
+    plusPurple: (
+      <PlusIcon size={size} className="bg-purple rounded-full text-gray-100 " />
+    ),
   };
 
   return icons[icon as keyof typeof icons];

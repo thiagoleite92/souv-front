@@ -4,6 +4,7 @@ import Select from 'react-select';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  options: { label: string; value: string }[];
 }
 
 export function SelectInput(props: InputProps) {
@@ -29,7 +30,7 @@ export function SelectInput(props: InputProps) {
       className="select-input"
       placeholder={props.placeholder}
       isClearable
-      options={[]}
+      options={props.options}
       value={value?.label}
       onChange={(option) => handleChange(option)}
       {...restLangField}
