@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0c0c0d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,11 +17,26 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter';
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .btn-text {
+    @apply text-[14px] leading-[130%] font-semibold;
+  }
+
+  .heading1 {
+    @apply text-[24px] leading-[100%] font-bold;
+  }
+
+  .heading2 {
+    @apply text-[14px] leading-[100%] font-bold text-gray100;
+  }
+
+  .tag {
+    @apply text-[12px] leading-[130%] font-normal tracking-wider text-gray-200;
   }
 }
