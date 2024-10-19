@@ -31,6 +31,9 @@ const config: Config = {
         greenDark: '#1C2015',
         blueDark: '#1A1D23',
       },
+      fontFamily: {
+        sans: 'var(--font-inter)',
+      },
     },
   },
   plugins: [],

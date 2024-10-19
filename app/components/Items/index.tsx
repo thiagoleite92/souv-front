@@ -25,9 +25,9 @@ export function Items({ items }: ItemsProps) {
           className="bg-gray400 w-full rounded-md flex justify-between items-center p-4"
           key={item.id}
         >
-          <div className="flex flex-col heading2">
-            {item.item}
-            <span className="tag">
+          <div className="flex flex-col heading2 space-y-1">
+            <span className="">{item.item}</span>
+            <span className="tag tracking-wider">
               {renderUnity(item.unity, item.quantity)}
             </span>
           </div>

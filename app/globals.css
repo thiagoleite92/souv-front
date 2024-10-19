@@ -25,18 +25,17 @@ body {
     text-wrap: balance;
   }
   .btn-text {
-    @apply text-[14px] leading-[130%] font-semibold;
+    @apply text-[14px] leading-[130%] font-semibold font-sans;
   }
 
   .heading1 {
-    @apply text-[24px] leading-[100%] font-bold;
+    @apply text-[24px] leading-[100%] font-bold text-gray100 font-sans;
   }
-
-  .heading2 {
-    @apply text-[14px] leading-[100%] font-bold text-gray100;
+  font-sans .heading2 {
+    @apply text-[14px] leading-[100%] font-bold text-gray100 font-sans;
   }
 
   .tag {
-    @apply text-[12px] leading-[130%] font-normal tracking-wider text-gray-200;
+    @apply text-[12px] leading-[130%] font-normal tracking-wider text-gray-200 font-sans;
   }
 }

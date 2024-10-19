@@ -4,7 +4,8 @@ import './globals.css';
 
 const inter = Inter({
   subsets: ['latin'], // Adapta para idiomas que você precisar
-  weight: ['400', '700', '600'], // Selecione os pesos necessários
+  weight: ['400', '700', '600'],
+  variable: '--font-inter', // Selecione os pesos necessários
 });
 
 export const metadata: Metadata = {
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter} antialiased min-h-screen`}>{children}</body>
+      <body className={`${inter.variable} antialiased min-h-screen`}>
+        {children}
+      </body>
     </html>
   );
 }

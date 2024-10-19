@@ -1,12 +1,11 @@
 'use client';
 
-import Image from 'next/image';
-import cover from './assets/images/cover.png';
 import { useEffect, useState } from 'react';
 import { api } from './lib/axios';
-import { AddItem } from './components/AddItem';
+import { Header } from './components/Header';
 import { Items } from './components/Items';
 import { Item } from './types/ItemsType';
+import { Cover } from './components/Cover';
 
 export default function Home() {
   const [items, setItems] = useState<Item[]>([]);
@@ -15,8 +14,6 @@ export default function Home() {
     const fetchItems = async () => {
       const { data } = await api.get('/items');
 
-      console.log(data);
-
       setItems(data);
     };
     fetchItems();
@@ -24,10 +21,9 @@ export default function Home() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <Image src={cover} alt="cover" objectFit="" />
-      <h1 className="heading1 self-start">Lista de Compras</h1>
-      <AddItem />
-      <div className="flex items-center justify-center sm:w-1/2 m-auto px-6 w-full pb-6">
+      <Cover />
+      <div className="flex flex-col items-center justify-center md:w-1/2 m-auto px-6 w-full pb-6 space-y-12">
+        <Header />
         {items.length === 0 && <p>Carregando Lista</p>}
         {items.length > 0 && <Items items={items} />}
       </div>
