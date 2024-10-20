@@ -3,15 +3,15 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form } from '..';
 import { unityOptions } from '@/app/const/unitys';
-import { tagOptions } from '@/app/const/tags';
 import { RenderIcons } from '../../RenderIcons';
 import { useWindowSize } from '@/app/hooks/useWindowSize';
+import { tagOptions } from '@/app/const/tags';
 
 type AddItemSchemaType = z.infer<typeof addItemSchema>;
 
 const addItemSchema = z.object({
   item: z.string().min(1),
-  quantity: z.number().positive(),
+  quantity: z.coerce.number().max(99).min(1),
   tag: z.string(),
   unity: z.string(),
 });
@@ -35,14 +35,14 @@ export function AddItemForm() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Form.Field>
-          <div className="w-full">
+          <div className="w-full flex flex-col gap-2 input-focused-styles">
             <Form.Label htmlFor="item">Item</Form.Label>
             <Form.Input name="item" type="text" autoComplete="off" />
           </div>
         </Form.Field>
         {width && width > 1023 && (
           <>
-            <div className={`flex items-end lg:w-[670px]`}>
+            <div className={`flex items-end lg:w-[670px] input-focused-styles`}>
               <Form.Field>
                 <Form.Label htmlFor="quantity">Quantidade</Form.Label>
                 <Form.Input
@@ -50,6 +50,7 @@ export function AddItemForm() {
                   type="number"
                   autoComplete="off"
                   min={1}
+                  max={99}
                 />
               </Form.Field>
               <Form.Field>
@@ -58,16 +59,19 @@ export function AddItemForm() {
                   options={unityOptions}
                   className=""
                   placeholder="UN."
+                  type="text"
                 />
               </Form.Field>
             </div>
-            <div className="flex flex-col gap-2  w-full">
+            <div className="flex flex-col gap-2  w-full input-focused-styles">
               <Form.Field>
                 <Form.Label htmlFor="tag">Categoria</Form.Label>
                 <Form.SelectInput
                   name="tag"
                   options={tagOptions}
                   placeholder="Selecione"
+                  type="text"
+                  hasEmoji
                 />
               </Form.Field>
             </div>
@@ -77,8 +81,10 @@ export function AddItemForm() {
           </>
         )}
         {width && width <= 1023 && (
-          <div className="flex gap-3">
-            <div className={`flex items-end max-w-[150px]`}>
+          <div className="flex gap-3 mt-2">
+            <div
+              className={`flex items-end max-w-[150px] input-focused-styles`}
+            >
               <Form.Field>
                 <Form.Label htmlFor="quantity">Quantidade</Form.Label>
                 <Form.Input
@@ -88,27 +94,32 @@ export function AddItemForm() {
                   min={1}
                 />
               </Form.Field>
-              <Form.Field>
-                <Form.SelectInput
-                  name="unity"
-                  options={unityOptions}
-                  className=""
-                  placeholder="UN."
-                />
-              </Form.Field>
+              <div className="flex min-w-[85px]">
+                <Form.Field>
+                  <Form.SelectInput
+                    name="unity"
+                    options={unityOptions}
+                    className=""
+                    placeholder="UN."
+                    type="text"
+                  />
+                </Form.Field>
+              </div>
             </div>
-            <div className="flex flex-col gap-2 flex-1">
+            <div className="flex flex-col gap-2 flex-1 input-focused-styles">
               <Form.Field>
                 <Form.Label htmlFor="tag">Categoria</Form.Label>
                 <Form.SelectInput
                   name="tag"
                   options={tagOptions}
                   placeholder="Selecione"
+                  type="text"
+                  hasEmoji
                 />
               </Form.Field>
             </div>
-            <button className="self-end pr-1">
-              <RenderIcons icon="plusCircle" size={20} />
+            <button className="self-end pr-1 w-fit">
+              <RenderIcons icon="plusCircle" size={0} />
             </button>
           </div>
         )}

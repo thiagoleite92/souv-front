@@ -1,11 +1,14 @@
 import { Item } from '@/app/types/ItemsType';
 import { Tag } from '../Tag';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useWindowSize } from '@/app/hooks/useWindowSize';
 
 interface ItemsProps {
   items: Item[];
 }
 
 export function Items({ items }: ItemsProps) {
+  const { width } = useWindowSize();
   const renderUnity = (unity: string, quantity: number) => {
     const unitys: { [key: string]: string } = {
       unity: 'unidade',
@@ -18,6 +21,19 @@ export function Items({ items }: ItemsProps) {
       : `${quantity} ${unitys[unity]}`;
   };
 
+  const formatRender = () => {
+    if (width && width <= 1023) {
+      return '';
+    }
+    return 'data-[state=unchecked]:hover:bg-purpleDark data-[state=checked]:hover:bg-successLight';
+  };
+
+  const handleCheckItem = async (id: string) => {
+    try {
+      console.log(id);
+    } catch (error) {}
+  };
+
   return (
     <ul className="w-full justify-between items-center space-y-2">
       {items.map((item) => (
@@ -25,11 +41,21 @@ export function Items({ items }: ItemsProps) {
           className="bg-gray-400 w-full rounded-md flex justify-between items-center p-4"
           key={item.id}
         >
-          <div className="flex flex-col heading2 space-y-1">
-            <span className="">{item.item}</span>
-            <span className="tag tracking-wider">
-              {renderUnity(item.unity, item.quantity)}
-            </span>
+          <div className="flex items-center heading2 gap-4">
+            <Checkbox
+              onClick={() => handleCheckItem(item.id)}
+              className={`w-5 h-5
+            data-[state=checked]:text-gray-100 border border-purple 
+            data-[state=checked]:bg-successDark
+            data-[state=checked]:border-successDark
+            ${formatRender()}`}
+            />
+            <div className="flex flex-col gap-2">
+              <span className="">{item.item}</span>
+              <span className="tag tracking-wider">
+                {renderUnity(item.unity, item.quantity)}
+              </span>
+            </div>
           </div>
           <Tag tag={item.category} />
         </li>
