@@ -1,4 +1,4 @@
-import { tagOptions } from '@/app/const/tags';
+import { tags } from '@/app/const/tags';
 import { RenderIcons } from '../RenderIcons';
 import { useWindowSize } from '@/app/hooks/useWindowSize';
 
@@ -23,7 +23,7 @@ export function Tag({ tag }: TagProps) {
         className={`${categoryStyle[tag]} flex gap-2 justify-center items-center px-4 rounded-full py-2 `}
       >
         <RenderIcons size={16} icon={tag} />{' '}
-        {width && width >= 640 && tagOptions[tag.toUpperCase()]}
+        {width && width >= 640 && tags[tag.toUpperCase()]}
       </span>
       <span className="text-purpleLight">
         <RenderIcons size={16} icon="ellipsisVertical" />

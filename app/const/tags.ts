@@ -1,4 +1,4 @@
-export const tag: { [key: string]: string } = {
+export const tags: { [key: string]: string } = {
   FRUIT: 'fruta',
   BAKERY: 'padaria',
   VEGETABLE: 'legume',
@@ -6,7 +6,7 @@ export const tag: { [key: string]: string } = {
   MEAT: 'carne',
 } as const;
 
-export const tagOptions = Object.entries(tag).map(([key, value]) => ({
+export const tagOptions = Object.entries(tags).map(([key, value]) => ({
   value: key.toLowerCase(),
   label: value,
 }));

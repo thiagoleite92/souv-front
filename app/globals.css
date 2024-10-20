@@ -17,7 +17,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: 'Inter';
+  font-family: Inter;
 }
 
 @layer utilities {
@@ -31,7 +31,8 @@ body {
   .heading1 {
     @apply text-[24px] leading-[100%] font-bold text-gray-100 font-sans;
   }
-  font-sans .heading2 {
+
+  .heading2 {
     @apply text-[14px] leading-[100%] font-bold text-gray-100 font-sans;
   }
 
