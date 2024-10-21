@@ -4,35 +4,14 @@ interface ErrorMessageProps {
   field: string;
 }
 
-function get(obj: Record<any, any>, path: string) {
-  const travel = (regexp: RegExp) =>
-    String.prototype.split
-      .call(path, regexp)
-      .filter(Boolean)
-      .reduce(
-        (res, key) => (res !== null && res !== undefined ? res[key] : res),
-        obj
-      );
-
-  const result = travel(/[,[\]]+?/) || travel(/[,[\].]+?/);
-
-  return result;
-}
-
-export function ErrorMessage({ field }: ErrorMessageProps) {
+export function ErrorMessage({}: ErrorMessageProps) {
   const {
     formState: { errors },
   } = useFormContext();
 
-  const fieldError = get(errors, field);
-
-  if (!fieldError) {
-    return null;
-  }
-
   return (
     <span className={`mt-1 text-sm ${errors?.field ? '' : 'text-red-400'} `}>
-      {fieldError.message?.toString()}
+      {errors.message?.toString()}
     </span>
   );
 }

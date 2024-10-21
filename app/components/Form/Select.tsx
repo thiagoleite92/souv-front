@@ -3,7 +3,6 @@ import { useFormContext, useController } from 'react-hook-form';
 import Select from 'react-select';
 import classNames from 'classnames';
 import { RenderIcons } from '../RenderIcons';
-import { tagStyle } from '@/app/const/tags';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -71,7 +70,7 @@ export function SelectInput(props: InputProps) {
             'rounded-lg'
           ),
         menuList: () => classNames('py-1'),
-        option: ({ isFocused, isSelected, data }) => {
+        option: ({ isFocused, data }) => {
           return classNames(
             'py-2',
             'px-3',

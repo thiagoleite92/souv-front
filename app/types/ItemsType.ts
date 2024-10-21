@@ -4,4 +4,5 @@ export type Item = {
   quantity: number;
   unity: 'unity' | 'liter' | 'kg';
   category: 'fruit' | 'bakery' | 'vegetable' | 'drink' | 'meat';
+  isChecked: boolean;
 };
