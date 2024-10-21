@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { api } from './lib/axios';
 import { Header } from './components/Header';
 import { Items } from './components/Items';
@@ -22,6 +22,12 @@ export default function Home() {
     }
   };
 
+  const handleAddItem = (item: Item) => {
+    const newItems = [item, ...items];
+
+    setItems(newItems);
+  };
+
   useEffect(() => {
     const fetchItems = async () => {
       const { data } = await api.get('/items');
@@ -35,7 +41,7 @@ export default function Home() {
     <div className="flex flex-col justify-center items-center">
       <Cover />
       <div className="flex flex-col items-center justify-center md:w-1/2 m-auto px-6 w-full pb-6 space-y-12">
-        <Header />
+        <Header handleAddItem={handleAddItem} />
         {items.length === 0 && <p>Carregando Lista</p>}
         {items.length > 0 && (
           <Items items={items} handleUpdateItems={handleUpdateItems} />

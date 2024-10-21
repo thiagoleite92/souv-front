@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,6 +7,12 @@ import { unityOptions } from '@/app/const/unitys';
 import { RenderIcons } from '../../RenderIcons';
 import { useWindowSize } from '@/app/hooks/useWindowSize';
 import { tagOptions } from '@/app/const/tags';
+import { api } from '@/app/lib/axios';
+import { Item } from '@/app/types/ItemsType';
+import { useToast } from '@/hooks/use-toast';
+interface AddItemFormProps {
+  handleAddItem: (item: Item) => void;
+}
 
 type AddItemSchemaType = z.infer<typeof addItemSchema>;
 
@@ -15,8 +22,9 @@ const addItemSchema = z.object({
   tag: z.string(),
   unity: z.string(),
 });
-export function AddItemForm() {
+export function AddItemForm({ handleAddItem }: AddItemFormProps) {
   const { width } = useWindowSize();
+  const { toast } = useToast();
 
   const addItemForm = useForm<AddItemSchemaType>({
     resolver: zodResolver(addItemSchema),
@@ -24,8 +32,35 @@ export function AddItemForm() {
 
   const { handleSubmit } = addItemForm;
 
-  const onSubmit = (data: AddItemSchemaType) => {
-    console.log('Form submitted:', data);
+  const onSubmit = async (formData: AddItemSchemaType) => {
+    const { item, quantity, tag, unity } = formData;
+
+    const body = { item, quantity, category: tag, unity };
+
+    try {
+      const { data } = await api.post('/items', body);
+      handleAddItem({
+        id: data?.itemId,
+        category: formData.tag,
+        unity: formData?.unity,
+        isChecked: false,
+        item: formData?.item,
+        quantity: formData?.quantity,
+      });
+
+      toast({
+        title: 'Ótimo!',
+        description: formData?.item + ' foi adicionado na lista',
+        variant: 'default',
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: 'Confira sua lista',
+        description: 'Item já cadastrado',
+        variant: 'default',
+      });
+    }
   };
 
   return (

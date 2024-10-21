@@ -1,3 +1,4 @@
+import React from 'react';
 import { Item } from '@/app/types/ItemsType';
 import { Tag } from '../Tag';
 import { Checkbox } from '@/components/ui/checkbox';
